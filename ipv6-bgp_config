@@ -1,8 +1,10 @@
- neighbor <%TARGET_IPv6%> remote-as <%AS_NUMBER%>
- neighbor <%TARGET_IPv6%> shutdown
- neighbor <%TARGET_IPv6%> maximum-prefix <%IPv6_PREFIX%>
- neighbor <%TARGET_IPv6%> route-map in <%AS-NAME%>-EBGP-IN
- neighbor <%TARGET_IPv6%> route-map out <%IX-LAN-PREFIX%>-v6-OUT
- neighbor <%TARGET_IPv6%> soft-reconfiguration inbound
- neighbor <%TARGET_IPv6%> activate
- no neighbor <%TARGET_IPv6%> shutdown
+set protocols bgp group <%IX-LAN-PREFIX%>-PEER-V6 neighbor <%TARGET_IPv6%> description PEER-<%AS-NAME%>
+set protocols bgp group <%IX-LAN-PREFIX%>-PEER-V6 neighbor <%TARGET_IPv6%> metric-out 100
+set protocols bgp group <%IX-LAN-PREFIX%>-PEER-V6 neighbor <%TARGET_IPv6%> import EBGP-FILTER
+set protocols bgp group <%IX-LAN-PREFIX%>-PEER-V6 neighbor <%TARGET_IPv6%> import FROM-<%IX-LAN-PREFIX%>-PEER
+set protocols bgp group <%IX-LAN-PREFIX%>-PEER-V6 neighbor <%TARGET_IPv6%> import SET-MED100
+set protocols bgp group <%IX-LAN-PREFIX%>-PEER-V6 neighbor <%TARGET_IPv6%> import SET-LOCALPREF500
+set protocols bgp group <%IX-LAN-PREFIX%>-PEER-V6 neighbor <%TARGET_IPv6%> family inet unicast prefix-limit maximum <%IPv6_PREFIX%>
+set protocols bgp group <%IX-LAN-PREFIX%>-PEER-V6 neighbor <%TARGET_IPv6%> family inet unicast prefix-limit teardown 95
+set protocols bgp group <%IX-LAN-PREFIX%>-PEER-V6 neighbor <%TARGET_IPv6%> authentication-key XXXXXXXXXXX
+set protocols bgp group <%IX-LAN-PREFIX%>-PEER-V6 neighbor <%TARGET_IPv6%> peer-as <%TARGET_ASN%>
