@@ -1,11 +1,7 @@
-ip as-path access-list <%AS-NAME%> seq 5 permit ^(<%AS_NUMBER%>_)+
+My Junos config
 
-route-map <%AS-NAME%>-EBGP-IN permit 10
- match as-path <%AS-NAME%>
- set local-preference 110
-
-router bgp
+--- IPv4 config
 <%IPv4_LIST%>
-address-family ipv6 unicast
+
+--- IPv6 config
 <%IPv6_LIST%>
-exit-address-family
