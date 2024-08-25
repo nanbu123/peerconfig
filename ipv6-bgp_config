@@ -1,10 +1,5 @@
-set protocols bgp group <%IX-LAN-PREFIX%>-PEER-V6 neighbor <%TARGET_IPv6%> description PEER-<%AS-NAME%>
-set protocols bgp group <%IX-LAN-PREFIX%>-PEER-V6 neighbor <%TARGET_IPv6%> metric-out 100
-set protocols bgp group <%IX-LAN-PREFIX%>-PEER-V6 neighbor <%TARGET_IPv6%> import EBGP-FILTER
-set protocols bgp group <%IX-LAN-PREFIX%>-PEER-V6 neighbor <%TARGET_IPv6%> import FROM-<%IX-LAN-PREFIX%>-PEER
-set protocols bgp group <%IX-LAN-PREFIX%>-PEER-V6 neighbor <%TARGET_IPv6%> import SET-MED100
-set protocols bgp group <%IX-LAN-PREFIX%>-PEER-V6 neighbor <%TARGET_IPv6%> import SET-LOCALPREF500
-set protocols bgp group <%IX-LAN-PREFIX%>-PEER-V6 neighbor <%TARGET_IPv6%> family inet unicast prefix-limit maximum <%IPv6_PREFIX%>
-set protocols bgp group <%IX-LAN-PREFIX%>-PEER-V6 neighbor <%TARGET_IPv6%> family inet unicast prefix-limit teardown 95
-set protocols bgp group <%IX-LAN-PREFIX%>-PEER-V6 neighbor <%TARGET_IPv6%> authentication-key XXXXXXXXXXX
-set protocols bgp group <%IX-LAN-PREFIX%>-PEER-V6 neighbor <%TARGET_IPv6%> peer-as <%TARGET_ASN%>
+set protocols bgp group EC-EXT-PEER-<%IX-LAN-PREFIX%>-<%targetIXID%>-V6 neighbor <%TARGET_IPv6%> "<%AS-NAME%> - AS<%TARGET_ASN%>"
+set protocols bgp group EC-EXT-PEER-<%IX-LAN-PREFIX%>-<%targetIXID%>-V6 neighbor <%TARGET_IPv6%> family inet6 unicast prefix-limit maximum <%IPv6_PREFIX%>
+set protocols bgp group EC-EXT-PEER-<%IX-LAN-PREFIX%>-<%targetIXID%>-V6 neighbor <%TARGET_IPv6%> family inet6 unicast prefix-limit teardown idle-timeout 60
+set protocols bgp group EC-EXT-PEER-<%IX-LAN-PREFIX%>-<%targetIXID%>-V6 neighbor <%TARGET_IPv6%> authentication-key XXXXXXXXXXX
+set protocols bgp group EC-EXT-PEER-<%IX-LAN-PREFIX%>-<%targetIXID%>-V6 neighbor <%TARGET_IPv6%> peer-as <%TARGET_ASN%>

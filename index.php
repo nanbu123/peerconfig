@@ -37,6 +37,7 @@
 		$netAPIresult	= file_get_contents( "https://www.peeringdb.com/api/net/{$apiResultAry[ 'id' ]}" );
 		$netAPIresult	= empty( $netAPIresult ) ? array() : json_decode( $netAPIresult , true );
 
+		$ASName	= $netAPIresult[ 'data' ][ 0 ][ 'name' ];
 		$irrASSetName	= $netAPIresult[ 'data' ][ 0 ][ 'irr_as_set' ];
 		$ipv4Prefix		= empty( $netAPIresult[ 'data' ][ 0 ][ 'info_prefixes4' ] ) ? IPv4_PREFIX_NUMBER	: $netAPIresult[ 'data' ][ 0 ][ 'info_prefixes4' ];
 		$ipv6Prefix		= empty( $netAPIresult[ 'data' ][ 0 ][ 'info_prefixes6' ] ) ? IPv6_PREFIX_NUMBER	: $netAPIresult[ 'data' ][ 0 ][ 'info_prefixes6' ];
@@ -56,6 +57,8 @@
 
 			foreach( $ipv4BGPConfigAry as $line ) {
 				$targetLine						= $line;
+				$targetLine						= str_replace( "<%AS-NAME%>"		, $ASName					, $targetLine );
+				$targetLine						= str_replace( "<%targetIXID%>"		, $ixLanID					, $targetLine );
 				$targetLine						= str_replace( "<%TARGET_IPv4%>"	, $netIXLan[ 'ipaddr4' ]	, $targetLine );
 				$targetLine						= str_replace( "<%TARGET_ASN%>"		, $targte_asn				, $targetLine );
 				$targetLine						= str_replace( "<%IPv4_PREFIX%>"	, $ipv4Prefix				, $targetLine );
@@ -64,6 +67,8 @@
 
 			foreach( $ipv6BGPConfigAry as $line ) {
 				$targetLine						= $line;
+				$targetLine						= str_replace( "<%AS-NAME%>"		, $ASName					, $targetLine );
+				$targetLine						= str_replace( "<%targetIXID%>"		, $ixLanID					, $targetLine );
 				$targetLine						= str_replace( "<%TARGET_IPv6%>"	, $netIXLan[ 'ipaddr6' ]	, $targetLine );
 				$targetLine						= str_replace( "<%TARGET_ASN%>"		, $targte_asn				, $targetLine );
 				$targetLine						= str_replace( "<%IPv6_PREFIX%>"	, $ipv4Prefix				, $targetLine );

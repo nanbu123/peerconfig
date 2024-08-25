@@ -1,10 +1,5 @@
-set protocols bgp group <%IX-LAN-PREFIX%>-PEER neighbor <%TARGET_IPv4%> description PEER-<%AS-NAME%>
-set protocols bgp group <%IX-LAN-PREFIX%>-PEER neighbor <%TARGET_IPv4%> metric-out 100
-set protocols bgp group <%IX-LAN-PREFIX%>-PEER neighbor <%TARGET_IPv4%> import EBGP-FILTER
-set protocols bgp group <%IX-LAN-PREFIX%>-PEER neighbor <%TARGET_IPv4%> import FROM-<%IX-LAN-PREFIX%>-PEER
-set protocols bgp group <%IX-LAN-PREFIX%>-PEER neighbor <%TARGET_IPv4%> import SET-MED100
-set protocols bgp group <%IX-LAN-PREFIX%>-PEER neighbor <%TARGET_IPv4%> import SET-LOCALPREF500
-set protocols bgp group <%IX-LAN-PREFIX%>-PEER neighbor <%TARGET_IPv4%> family inet unicast prefix-limit maximum <%IPv4_PREFIX%>
-set protocols bgp group <%IX-LAN-PREFIX%>-PEER neighbor <%TARGET_IPv4%> family inet unicast prefix-limit teardown 95
-set protocols bgp group <%IX-LAN-PREFIX%>-PEER neighbor <%TARGET_IPv4%> authentication-key XXXXXXXXXXX
-set protocols bgp group <%IX-LAN-PREFIX%>-PEER neighbor <%TARGET_IPv4%> peer-as <%TARGET_ASN%>
+set protocols bgp group EC-EXT-PEER-<%IX-LAN-PREFIX%>-<%targetIXID%>-V4 neighbor <%TARGET_IPv4%> description "<%AS-NAME%> - AS<%TARGET_ASN%>"
+set protocols bgp group EC-EXT-PEER-<%IX-LAN-PREFIX%>-<%targetIXID%>-V4 neighbor <%TARGET_IPv4%> family inet unicast prefix-limit maximum <%IPv4_PREFIX%>
+set protocols bgp group EC-EXT-PEER-<%IX-LAN-PREFIX%>-<%targetIXID%>-V4 neighbor <%TARGET_IPv4%> family inet unicast prefix-limit teardown idle-timeout 60
+set protocols bgp group EC-EXT-PEER-<%IX-LAN-PREFIX%>-<%targetIXID%>-V4 neighbor <%TARGET_IPv4%> authentication-key XXXXXXXXXXX
+set protocols bgp group EC-EXT-PEER-<%IX-LAN-PREFIX%>-<%targetIXID%>-V4 neighbor <%TARGET_IPv4%> peer-as <%TARGET_ASN%>
